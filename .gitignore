@@ -1,0 +1,22 @@
+# Packages
+*.jar
+
+# Gradle
+.gradle
+!gradle-wrapper.jar
+.gradletasknamecache
+.m2
+
+# Build output
+target
+*/target
+build
+*/build
+
+# Logs
+*.log
+
+# Local files
+.idea
+.DS_Store*
+my-notes.md
