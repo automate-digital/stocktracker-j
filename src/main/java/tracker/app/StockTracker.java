@@ -1,6 +1,6 @@
 package tracker.app;
 
-import tracker.domain.PricingService;
+import tracker.service.PricingService;
 import tracker.domain.Stock;
 import tracker.service.AlphavDataService;
 import tracker.features.portfoliomgt.ManagePortfolio;
@@ -15,8 +15,8 @@ public class StockTracker {
     public static void main(String[] args) {
         PricingService pricing = new AlphavDataService();
         ManagePortfolio portfolio = new ManagePortfolio(pricing);
-        Scanner sc = new Scanner(System.in);
 
+        Scanner sc = new Scanner(System.in);
         boolean exiting = false;
         while(!exiting) {
             System.out.println("Select menu number: (1) Add Stock, (2) Delete Stock, (3) Exit");
@@ -44,7 +44,7 @@ public class StockTracker {
         if (command == 1) { // add stock to portfolio
             return addStock(sc, portfolio);
         } else if (command == 2) { // delete stock from portfolio
-            System.out.println("");
+            return deleteStock(sc, portfolio);
         }
         return false;
     }
@@ -52,11 +52,11 @@ public class StockTracker {
     private static boolean addStock(Scanner sc, ManagePortfolio portfolio) {
         System.out.println("Enter ticker of stock to add");
         String ticker = sc.nextLine();
-
         int units = 0;
         try {
             System.out.println("Enter number of units to add");
             units = sc.nextInt();
+            sc.nextLine();
             if (units < 1) {
                 printCommandError("Units must be more than 0.");
                 return false;
@@ -81,9 +81,19 @@ public class StockTracker {
         return false;
     }
 
+    private static boolean deleteStock(Scanner sc, ManagePortfolio portfolio) {
+        System.out.println("Enter ticker of stock to delete");
+        String ticker = sc.nextLine();
+        portfolio.delete(ticker);
+        return true;
+    }
+
     private static void printStatement(ManagePortfolio portfolio) {
         List<Stock> listing = portfolio.getListing();
-        if (listing.size() < 1) return;
+        if (listing.size() < 1) {
+            System.out.println("\nPORTFOLIO IS EMPTY");
+            return;
+        }
 
         System.out.println("\nCURRENT PORTFOLIO");
         for (Stock stock : portfolio.getListing()) {

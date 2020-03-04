@@ -20,6 +20,10 @@ public class Portfolio {
         stocks.add(stock);
     }
 
+    public void delete(String ticker) {
+        stocks.removeIf(obj -> obj.getTicker().equals(ticker));
+    }
+
     public double getValue() {
         int totalInPence = 0;
         for (Stock stock : stocks) {

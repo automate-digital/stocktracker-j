@@ -1,4 +1,4 @@
-package tracker.domain;
+package tracker.service;
 
 public interface PricingService {
 

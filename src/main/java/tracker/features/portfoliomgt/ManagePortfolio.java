@@ -1,8 +1,8 @@
 package tracker.features.portfoliomgt;
 
 import tracker.domain.Portfolio;
-import tracker.domain.PricingService;
 import tracker.domain.Stock;
+import tracker.service.PricingService;
 
 import java.util.List;
 
@@ -17,6 +17,10 @@ public class ManagePortfolio {
 
     public void add(String ticker, int units) throws Exception {
         portfolio.add(getStock(ticker, units));
+    }
+
+    public void delete(String ticker) {
+        portfolio.delete(ticker);
     }
 
     public double getValuation() {

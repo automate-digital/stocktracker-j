@@ -19,12 +19,13 @@ Other notes:
 - This is a single-user application; there is no end user authentication.   
 - The application integrates with the following API: https://www.alphavantage.co/ (see below for setting up API access)   
 
-
 ## Usage
+
+This solution has been developed and tested on Java 11+.
 
 ### Prerequisites
 
-The project also requires api access to <https://www.alphavantage.co/>. To set this up:
+The project requires api access to <https://www.alphavantage.co/>. To set this up:
 -   Sign-up for a free api key here: <https://www.alphavantage.co/support/#api-key>   
     - Look for the key to be displayed on screen as soon as you submit your details.
 -   Then add the api key as an environment variable named `ALPHAVANTAGE_APIKEY`
@@ -34,4 +35,12 @@ failures are expected when issuing a series of requests in quick succession.
 
 ### Build and Run
 
+For Mac, you can use this helper script:
+
 ```./run.sh```
+
+For Windows:
+
+```gradlew.bat```
+
+```java -jar build\libs\stocktracker-java-1.0-SNAPSHOT.jar```
