@@ -8,7 +8,6 @@ import tracker.storage.Persistence;
 import tracker.storage.SqlLiteStorage;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 import java.io.IOException;
 import java.util.InputMismatchException;
@@ -20,22 +19,14 @@ public class StockTracker {
         Persistence persistence = new SqlLiteStorage();
         ManagePortfolio portfolio = new ManagePortfolio(persistence, pricing);
 
-        loadStocks(persistence, portfolio);
-
+        try {
+            portfolio.loadAllStocks();
+        } catch (Exception e) {
+            printCommandError("Unable to retrieve stock data; may have exceeded API request limit.");
+            System.exit(0);
+        }
         printStatement(portfolio);
         doCommandLoop(portfolio, persistence);
-    }
-
-    private static void loadStocks(Persistence persistence, ManagePortfolio portfolio) {
-        Map<String, Integer> stocks = persistence.getAllStocks();
-        for (Map.Entry<String, Integer> entry : stocks.entrySet()) {
-            try {
-                portfolio.load(entry.getKey(), entry.getValue());
-            } catch (Exception e) {
-                printCommandError("Unable to retrieve stock data; may have exceeded API request limit.");
-                System.exit(0);
-             }
-        }
     }
 
     private static void printStatement(ManagePortfolio portfolio) {

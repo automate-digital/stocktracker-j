@@ -57,11 +57,19 @@ public class ManagePortfolio {
         remove(ticker);
     }
 
+    public void loadAllStocks() throws Exception {
+        Map<String, Integer> stocks = persistence.getAllStocks();
+        for (Map.Entry<String, Integer> entry : stocks.entrySet()) {
+            load(entry.getKey(), entry.getValue());
+        }
+    }
+
     private void remove(String ticker) {
         String sql = "DELETE FROM " + Persistence.STOCKS_TABLE_NAME
                 + " WHERE ticker='" + ticker + "'";
         persistence.executeQuery(sql);
     }
+
 
     public double getValuation() {
         return portfolio.getValue();
