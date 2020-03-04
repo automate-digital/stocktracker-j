@@ -13,8 +13,9 @@ target
 build
 */build
 
-# Logs
+# Logs and db
 *.log
+*.db
 
 # Local files
 .idea

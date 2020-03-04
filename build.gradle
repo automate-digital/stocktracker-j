@@ -25,5 +25,6 @@ jar {
 
 dependencies {
     testImplementation 'junit.junit:4.12'
+    implementation group: 'org.xerial', name: 'sqlite-jdbc', version: '3.30.1'
     implementation group: 'org.json', name: 'json', version: '20190722'
 }
