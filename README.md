@@ -35,12 +35,6 @@ failures are expected when issuing a series of requests in quick succession.
 
 ### Build and Run
 
-For Mac, you can use this helper script:
+```./gradlew build```
 
-```./run.sh```
-
-For Windows:
-
-```gradlew.bat```
-
-```java -jar build\libs\stocktracker-java-1.0-SNAPSHOT.jar```
+```java -jar ./build/libs/stocktracker-java-1.0-SNAPSHOT.jar```
