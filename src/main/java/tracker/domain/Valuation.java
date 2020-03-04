@@ -1,5 +1,8 @@
 package tracker.domain;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public class Valuation {
     PricingService pricing;
     int value;
@@ -8,12 +11,20 @@ public class Valuation {
         this.pricing = pricing;
     }
 
-    public int getValue(Portfolio portfolio) {
-        int total = 0;
+    public int getPrice(Stock stock) {
+        return pricing.getPrice(stock.getTicker());
+    }
+
+    public double getValue(Portfolio portfolio) {
+        int totalInPence = 0;
         for (Stock stock : portfolio.getStocks()) {
-            value = pricing.getPrice(stock.getTicker());
-            total += value;
+            value = stock.getUnits() * stock.getPrice();
+            totalInPence += value;
         }
-        return total;
+
+        int decimalPlaces = 2;
+        BigDecimal penceInPound = new BigDecimal(100);
+        BigDecimal bd = BigDecimal.valueOf(totalInPence);
+        return bd.divide(penceInPound, decimalPlaces,RoundingMode.HALF_DOWN).doubleValue();
     }
 }

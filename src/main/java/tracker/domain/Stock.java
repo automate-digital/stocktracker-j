@@ -3,10 +3,12 @@ package tracker.domain;
 public class Stock {
     private String ticker;
     private int units;
+    private int price;
 
-    public Stock(String ticker, int units) {
+    public Stock(String ticker, int units, int price) {
         this.ticker = ticker;
         this.units = units;
+        this.price = price;
     }
 
     public String getTicker() {
@@ -15,5 +17,18 @@ public class Stock {
 
     public int getUnits() {
         return units;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    @Override
+    public String toString() {
+        return "Stock{" +
+                "ticker='" + ticker + '\'' +
+                ", units=" + units +
+                ", price=" + price/100.0 +
+                '}';
     }
 }

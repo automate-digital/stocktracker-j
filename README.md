@@ -31,3 +31,9 @@ The project also requires api access to <https://www.alphavantage.co/>. To set t
 
 NOTE: Please be aware that the standard AlphaVantage API access is limited to 5 calls per minute so intermittent
 failures are expected when issuing a series of requests in quick succession.
+
+### Build and Run
+
+```gradle build```
+
+```./run.sh```
