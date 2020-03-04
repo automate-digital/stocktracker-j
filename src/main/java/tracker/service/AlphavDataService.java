@@ -21,6 +21,9 @@ public class AlphavDataService implements PricingService {
                 .build();
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        if (errorResponse(response.body())) {
+            throw new IllegalArgumentException("Ticker not found");
+        }
         return parsePrice(response.body());
     }
 
@@ -39,6 +42,10 @@ public class AlphavDataService implements PricingService {
             System.exit(0);
         }
         return apiKey;
+    }
+
+    private boolean errorResponse(String apiResponse) {
+        return apiResponse.contains("Error Message");
     }
 
     private int parsePrice(String apiResponse) {

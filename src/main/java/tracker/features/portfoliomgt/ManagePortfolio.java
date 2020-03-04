@@ -3,7 +3,6 @@ package tracker.features.portfoliomgt;
 import tracker.domain.Portfolio;
 import tracker.domain.PricingService;
 import tracker.domain.Stock;
-import tracker.domain.Valuation;
 
 import java.util.List;
 
@@ -21,8 +20,7 @@ public class ManagePortfolio {
     }
 
     public double getValuation() {
-        Valuation valuation = new Valuation(pricingService);
-        return valuation.getValue(portfolio);
+        return portfolio.getValue();
     }
 
     public List<Stock> getListing() {
