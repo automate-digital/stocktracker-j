@@ -11,7 +11,7 @@ public class Valuation {
         this.pricing = pricing;
     }
 
-    public int getPrice(Stock stock) {
+    public int getPrice(Stock stock) throws Exception {
         return pricing.getPrice(stock.getTicker());
     }
 

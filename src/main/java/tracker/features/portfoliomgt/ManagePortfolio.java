@@ -8,20 +8,20 @@ import tracker.domain.Valuation;
 import java.util.List;
 
 public class ManagePortfolio {
-    PricingService pricing;
+    PricingService pricingService;
     Portfolio portfolio;
 
     public ManagePortfolio(PricingService pricing) {
-        this.pricing = pricing;
+        this.pricingService = pricing;
         this.portfolio = new Portfolio();
     }
 
-    public void add(String ticker, int units) {
+    public void add(String ticker, int units) throws Exception {
         portfolio.add(getStock(ticker, units));
     }
 
     public double getValuation() {
-        Valuation valuation = new Valuation(pricing);
+        Valuation valuation = new Valuation(pricingService);
         return valuation.getValue(portfolio);
     }
 
@@ -29,9 +29,8 @@ public class ManagePortfolio {
         return portfolio.getStocks();
     }
 
-    private Stock getStock(String ticker, int units) {
-        int price = pricing.getPrice(ticker);
+    private Stock getStock(String ticker, int units) throws Exception {
+        int price = pricingService.getPrice(ticker);
         return new Stock(ticker, units, price);
     }
-
 }

@@ -9,7 +9,7 @@ It supports the following capabilities:
 - Remove a holding for a given ticker.  
   - The format of supported stock tickers is a series of uppercase letters, plus an optional hyphen and/or dot and/or number, 
   examples being: AAPL, BF-B, VOD.LON, VOW3.DE   
-- Query the total value of the portfolio:  
+- Displays the total value of the portfolio, where:  
   - Stock prices based on the daily closing price from the prior (most recent) trading day.   
 - Note: only one holding per ticker is supported. If a holding with an existing ticker is added, then the new number of units replaces the amount for that ticker.
 
@@ -33,7 +33,5 @@ NOTE: Please be aware that the standard AlphaVantage API access is limited to 5 
 failures are expected when issuing a series of requests in quick succession.
 
 ### Build and Run
-
-```gradle build```
 
 ```./run.sh```

@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 
-cd build/classes/java/main
-java tracker.app.StockTracker
+gradle build
+echo
+java -jar ./build/libs/stocktracker-java-1.0-SNAPSHOT.jar

@@ -28,7 +28,7 @@ public class Stock {
         return "Stock{" +
                 "ticker='" + ticker + '\'' +
                 ", units=" + units +
-                ", price=" + price/100.0 +
+                String.format(", price=%.2f", price/100.0) +
                 '}';
     }
 }
